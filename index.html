@@ -22,7 +22,7 @@ h1 span{color:#bd8a2e}
 .btn.alt{background:transparent;color:var(--green);border:1px solid var(--green)}
 .art{min-height:330px;border-radius:48% 48% 20px 20px;background:linear-gradient(#c7dfa7,#8db66c 60%,#5f914c);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .sun{position:absolute;width:95px;height:95px;border-radius:50%;background:#f6d77b;right:16%;top:12%}
-.character{font-size:clamp(100px,16vw,180px);filter:drop-shadow(0 12px 4px #345b3330);z-index:1;animation:bob 3s ease-in-out infinite}
+.character{width:clamp(180px,28vw,300px);height:auto;object-fit:contain;filter:drop-shadow(0 12px 4px #345b3330);z-index:1;animation:bob 3s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-10px)}}
 .art-label{position:absolute;bottom:18px;background:#fff9e5;border-radius:20px;padding:5px 15px;font-size:13px;z-index:2}
 section{padding:76px 8%;scroll-margin-top:70px}
@@ -67,7 +67,11 @@ footer p{margin:4px}
     <a class="btn" href="#story">开启成长之旅 ↗</a>
     <a class="btn alt" href="#game">和禾小满互动</a>
   </div>
-  <div class="art"><div class="sun"></div><div class="character">🌾</div><div class="art-label">你好，我叫禾小满！</div></div>
+ <div class="art">
+  <div class="sun"></div>
+  <img class="character" src="水稻ip.png" alt="禾小满水稻IP形象">
+  <div class="art-label">你好，我叫禾小满！</div>
+</div>
 </header>
 
 <section id="story" class="story">
