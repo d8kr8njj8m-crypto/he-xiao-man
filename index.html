@@ -1,1 +1,183 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>禾小满：一粒米的来处</title>
+<style>
+:root{--green:#315d3b;--light:#f4f0df;--gold:#d9a844;--ink:#273c2d}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--light);color:var(--ink);font-family:"Microsoft YaHei",sans-serif;line-height:1.8}
+nav{position:sticky;top:0;z-index:5;background:#f8f5e9ed;backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:12px 7%;border-bottom:1px solid #d9ddc9}
+.logo{font-weight:900;color:var(--green);font-size:19px}
+nav a{color:var(--green);text-decoration:none;margin-left:18px;font-size:14px}
+.hero{min-height:590px;padding:85px 8%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:35px;background:linear-gradient(135deg,#e6edcf,#f6e9bd)}
+.eyebrow{letter-spacing:3px;color:#6a7a43;font-size:13px}
+h1{font-size:clamp(38px,6vw,72px);line-height:1.2;margin:18px 0;color:#294d32}
+h1 span{color:#bd8a2e}
+.hero p{max-width:520px;color:#4d6248}
+.btn{display:inline-block;border:0;border-radius:30px;padding:12px 23px;background:var(--green);color:white;text-decoration:none;cursor:pointer;font-size:15px;margin:8px 8px 0 0}
+.btn.alt{background:transparent;color:var(--green);border:1px solid var(--green)}
+.art{min-height:330px;border-radius:48% 48% 20px 20px;background:linear-gradient(#c7dfa7,#8db66c 60%,#5f914c);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.sun{position:absolute;width:95px;height:95px;border-radius:50%;background:#f6d77b;right:16%;top:12%}
+.character{font-size:clamp(100px,16vw,180px);filter:drop-shadow(0 12px 4px #345b3330);z-index:1;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.art-label{position:absolute;bottom:18px;background:#fff9e5;border-radius:20px;padding:5px 15px;font-size:13px;z-index:2}
+section{padding:76px 8%;scroll-margin-top:70px}
+.section-head{text-align:center;max-width:690px;margin:0 auto 35px}
+.section-head h2{font-size:clamp(27px,4vw,40px);margin:0;color:var(--green)}
+.section-head p{color:#68755f}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fffdf4;border:1px solid #e2e2cd;border-radius:18px;padding:24px;box-shadow:0 8px 25px #344d2410}
+.card .emoji{font-size:36px}
+.card h3{margin:8px 0;color:var(--green)}
+.story{background:#e5ebd5}
+.timeline{max-width:800px;margin:auto;display:grid;gap:14px}
+.step{background:#fffdf5;border-radius:14px;padding:18px 22px;display:grid;grid-template-columns:65px 1fr;gap:12px;align-items:start}
+.step b{color:#b28530;font-size:18px}
+.step h3{margin:0 0 5px}
+.step p{margin:0;color:#66705b}
+.science{background:#f7edcf}
+.challenge{background:#fffdf5;border-radius:20px;padding:25px;max-width:760px;margin:auto;text-align:center}
+.options{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+.options button{background:#f2f0df;color:var(--green);border:1px solid #d5d8bf;padding:11px 18px;border-radius:25px;cursor:pointer}
+.options button:hover{background:#dfe8c9}
+#answer{min-height:55px;font-weight:600;color:var(--green)}
+.video-box{max-width:850px;margin:auto;background:#e5ebd5;border-radius:20px;padding:28px;text-align:center}
+.video-box video{width:100%;max-height:460px;border-radius:12px;background:#263e2d}
+.note{font-size:13px;color:#75806a}
+footer{background:#294d32;color:#f7f0d9;text-align:center;padding:35px 20px}
+footer p{margin:4px}
+@media(max-width:760px){nav{padding:12px 5%;flex-wrap:wrap}nav a{margin:0 0 0 10px}.hero{grid-template-columns:1fr;padding:55px 7%}.art{min-height:260px}.cards{grid-template-columns:1fr}section{padding:55px 6%}.step{grid-template-columns:50px 1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">🌾 禾小满</div>
+  <div><a href="#story">成长之旅</a><a href="#science">田间课堂</a><a href="#game">互动体验</a></div>
+</nav>
+
+<header class="hero">
+  <div>
+    <div class="eyebrow">A GRAIN · A JOURNEY</div>
+    <h1>一粒米的来处，<br><span>不止一场丰收。</span></h1>
+    <p>从一滴雨水落进田野，到一粒稻谷走上餐桌。跟随小小的水稻精灵禾小满，走进真实的农田，看看粮食如何生长，也看看每一碗米饭背后的守护。</p>
+    <a class="btn" href="#story">开启成长之旅 ↗</a>
+    <a class="btn alt" href="#game">和禾小满互动</a>
+  </div>
+  <div class="art"><div class="sun"></div><div class="character">🌾</div><div class="art-label">你好，我叫禾小满！</div></div>
+</header>
+
+<section id="story" class="story">
+  <div class="section-head">
+    <div class="eyebrow">GROWING UP</div>
+    <h2>禾小满的成长日记</h2>
+    <p>成长从来不是一帆风顺。每一次风雨、每一次帮助，都让一粒种子离丰收更近一点。</p>
+  </div>
+  <div class="timeline">
+    <article class="step"><b>01</b><div><h3>🌱 初见泥土</h3><p>一粒小小的种子落进温暖的田土。它还不知道，未来会遇见怎样的世界。</p></div></article>
+    <article class="step"><b>02</b><div><h3>💧 雨水的秘密</h3><p>“咦？原来雨水是凉凉的！”细雨滋润着禾苗，也带来了第一次关于自然的惊喜。</p></div></article>
+    <article class="step"><b>03</b><div><h3>🌧️ 突如其来的考验</h3><p>暴雨压弯叶片，烈日让土地干裂，虫害也悄悄靠近。小小的禾苗第一次感到害怕。</p></div></article>
+    <article class="step"><b>04</b><div><h3>🤲 田野里的守护者</h3><p>农民发现受伤的禾苗，扶起倒伏的稻株、查看田间水情。那些看似平凡的动作，藏着日复一日的经验与辛劳。</p></div></article>
+    <article class="step"><b>05</b><div><h3>🚜 科技带来的新力量</h3><p>气象预报、科学灌溉、无人机巡田与精准植保，让种植更科学，也帮助人们更早发现问题。</p></div></article>
+    <article class="step"><b>06</b><div><h3>🌾 终于迎来金色</h3><p>经历风雨的禾苗结出稻穗。一粒米的旅程走过春夏，也凝结着土地、阳光和人的付出。</p></div></article>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div class="eyebrow">MEET HE XIAOMAN</div>
+    <h2>认识我的田野伙伴</h2>
+    <p>别看我小小一只，我的成长故事里有很多值得了解的事。</p>
+  </div>
+  <div class="cards">
+    <article class="card"><div class="emoji">🌾</div><h3>禾小满</h3><p>好奇、勇敢，也会害怕。每一次遇见困难，都让它更懂得生命的韧性。</p></article>
+    <article class="card"><div class="emoji">👩‍🌾</div><h3>田野守护者</h3><p>播种、育秧、灌溉、除草、收割。粮食背后，是农民长期的劳动与经验。</p></article>
+    <article class="card"><div class="emoji">🛰️</div><h3>农业新帮手</h3><p>传感器、气象信息和智能设备，帮助人们观察农田、判断风险、科学管理。</p></article>
+  </div>
+</section>
+
+<section id="science" class="science">
+  <div class="section-head">
+    <div class="eyebrow">FIELD CLASSROOM</div>
+    <h2>一粒米背后的学问</h2>
+    <p>传统经验与现代科技并肩，让每一寸土地得到更细致的照料。</p>
+  </div>
+  <div class="cards">
+    <article class="card"><div class="emoji">🌱</div><h3>传统农耕智慧</h3><p>看天时、察水情、因地制宜。长期积累的种植经验，是农业生产的重要基础。</p></article>
+    <article class="card"><div class="emoji">🌦️</div><h3>提前发现风险</h3><p>天气预报和田间监测能帮助农户关注暴雨、高温与干旱风险，及时安排农事。</p></article>
+    <article class="card"><div class="emoji">🚁</div><h3>精准管理农田</h3><p>无人机和智能设备可以辅助巡田、监测作物状况，让农业管理更高效、更精准。</p></article>
+  </div>
+</section>
+
+<section id="game">
+  <div class="section-head">
+    <div class="eyebrow">MAKE A CHOICE</div>
+    <h2>如果你是禾小满的守护者</h2>
+    <p>田野突然遇到问题，你会怎么做？选一个你认为合适的行动吧。</p>
+  </div>
+  <div class="challenge">
+    <div class="emoji">🌧️</div>
+    <h3>挑战一：暴雨来临，田里积水了</h3>
+    <p>你会怎样帮助禾苗？</p>
+    <div class="options">
+      <button onclick="answer(1)">A. 观察水情，及时排水</button>
+      <button onclick="answer(2)">B. 什么也不做，等太阳出来</button>
+      <button onclick="answer(3)">C. 不看情况，直接大量施肥</button>
+    </div>
+    <div id="answer" aria-live="polite">选择一个答案，看看禾小满怎么说。</div>
+    <button class="btn" onclick="nextQuestion()">下一道挑战 ↗</button>
+  </div>
+</section>
+
+<section id="video">
+  <div class="section-head">
+    <div class="eyebrow">WATCH THE STORY</div>
+    <h2>把禾小满的故事放映出来</h2>
+    <p>这里可以展示你制作好的 AI 动画，让观众在网页中直接观看。</p>
+  </div>
+  <div class="video-box">
+    <video controls preload="metadata" poster="">
+      <source src="he-xiaoman.mp4" type="video/mp4">
+      你的浏览器暂不支持视频播放。
+    </video>
+    <p class="note">视频准备好后，将 MP4 文件上传到仓库，并命名为 he-xiaoman.mp4。</p>
+  </div>
+</section>
+
+<footer>
+  <p>🌾 禾小满：一粒米的来处</p>
+  <p>从一粒种子出发，看见土地、劳动与粮食的意义。</p>
+  <p style="font-size:12px;opacity:.7;margin-top:12px">互动数字文化体验 · 学生创作项目</p>
+</footer>
+
+<script>
+let question=0;
+function answer(n){
+ const box=document.getElementById('answer');
+ if(question===0){
+  if(n===1){box.textContent='答对啦！先观察积水情况，结合田块条件及时排水，能降低禾苗受淹的风险。';}
+  else if(n===2){box.textContent='再想一想：长时间积水可能影响水稻根系生长，遇到强降雨要关注田间水情。';}
+  else{box.textContent='施肥不是解决积水的办法。先观察田间情况，科学管理水分更重要。';}
+ }else{
+  if(n===1){box.textContent='做得好！关注天气预警、田间水情和作物变化，才能更早发现风险。';}
+  else if(n===2){box.textContent='还可以更主动一些：了解天气和作物情况，必要时向有经验的农户或农技人员求助。';}
+  else{box.textContent='每块田的情况不同，不能盲目处理。先观察、再判断，才是科学的守护方式。';}
+ }
+}
+function nextQuestion(){
+ question=question===0?1:0;
+ document.querySelector('#game .challenge h3').textContent=question===0?'挑战一：暴雨来临，田里积水了':'挑战二：连续高温，禾苗看起来有些缺水';
+ document.querySelector('#game .challenge .emoji').textContent=question===0?'🌧️':'☀️';
+ document.querySelector('#game .challenge p').textContent=question===0?'你会怎样帮助禾苗？':'你会怎样判断并帮助禾苗？';
+ document.querySelectorAll('#game .options button')[0].textContent=question===0?'A. 观察水情，及时排水':'A. 观察土壤和天气，科学补水';
+ document.querySelectorAll('#game .options button')[1].textContent=question===0?'B. 什么也不做，等太阳出来':'B. 不看情况，一直大量浇水';
+ document.querySelectorAll('#game .options button')[2].textContent=question===0?'C. 不看情况，直接大量施肥':'C. 忽视预警，不管禾苗';
+ document.getElementById('answer').textContent='选择一个答案，看看禾小满怎么说。';
+}
+</script>
+</body>
+</html>
+
