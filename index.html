@@ -247,6 +247,63 @@ footer p{margin:4px}
 @media(max-width:600px) {
   .farm-grid {grid-template-columns:1fr;}
 }
+
+/* 水稻田管理面板样式 */
+#farm {
+  display: block !important;
+  visibility: visible !important;
+  color: #273c2d;
+}
+
+#farm .farm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#farm .farm-card {
+  display: block;
+  padding: 18px;
+  border-radius: 15px;
+  background: #f4f3e5;
+  border: 1px solid #e2e2cd;
+}
+
+#farm .farm-bar {
+  height: 9px;
+  margin-top: 8px;
+  background: #dfe4d2;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#farm .farm-bar div {
+  height: 100%;
+  border-radius: 10px;
+  transition: width .3s;
+}
+
+#farm .farm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#farm .farm-actions button {
+  border: 0;
+  border-radius: 22px;
+  padding: 11px 16px;
+  background: #315d3b;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  #farm .farm-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 
 <section id="game">
