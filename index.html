@@ -1,543 +1,329 @@
 
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>禾小满：一粒米的来处</title>
 <style>
 :root{--green:#315d3b;--light:#f4f0df;--gold:#d9a844;--ink:#273c2d}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--light);color:var(--ink);font-family:"Microsoft YaHei",sans-serif;line-height:1.8}
-nav{position:sticky;top:0;z-index:5;background:#f8f5e9ed;backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:12px 7%;border-bottom:1px solid #d9ddc9}
-.logo{font-weight:900;color:var(--green);font-size:19px}
-nav a{color:var(--green);text-decoration:none;margin-left:18px;font-size:14px}
-.hero{min-height:590px;padding:85px 8%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:35px;background:linear-gradient(135deg,#e6edcf,#f6e9bd)}
-.eyebrow{letter-spacing:3px;color:#6a7a43;font-size:13px}
-h1{font-size:clamp(38px,6vw,72px);line-height:1.2;margin:18px 0;color:#294d32}
+body{margin:0;background:var(--light);color:var(--ink);font-family:"Microsoft YaHei",sans-serif;line-height:1.7}
+nav{position:sticky;top:0;z-index:10;background:#f8f5e9ed;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 5%;border-bottom:1px solid #d9ddc9;flex-wrap:wrap}
+.logo{font-size:19px;font-weight:900;color:var(--green)}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.nav-btn,.btn{border:0;border-radius:24px;padding:10px 16px;background:var(--green);color:white;cursor:pointer;font-size:14px;text-decoration:none;font-family:inherit}
+.nav-btn{background:transparent;color:var(--green)}
+.nav-btn:hover{background:#e5ebd5}
+.btn.alt{background:transparent;border:1px solid var(--green);color:var(--green)}
+.page{display:none;min-height:calc(100vh - 60px);padding:36px 6%}
+.page.active{display:block}
+.hero{min-height:75vh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;background:linear-gradient(135deg,#e6edcf,#f6e9bd);padding:50px 8%;margin:-36px -6% 0}
+.eyebrow{letter-spacing:3px;color:#718047;font-size:12px}
+h1{font-size:clamp(36px,6vw,65px);line-height:1.2;color:#294d32}
 h1 span{color:#bd8a2e}
-.hero p{max-width:520px;color:#4d6248}
-.btn{display:inline-block;border:0;border-radius:30px;padding:12px 23px;background:var(--green);color:white;text-decoration:none;cursor:pointer;font-size:15px;margin:8px 8px 0 0}
-.btn.alt{background:transparent;color:var(--green);border:1px solid var(--green)}
-.art{min-height:330px;border-radius:48% 48% 20px 20px;background:linear-gradient(#c7dfa7,#8db66c 60%,#5f914c);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.sun{position:absolute;width:95px;height:95px;border-radius:50%;background:#f6d77b;right:16%;top:12%}
-.character{width:clamp(180px,28vw,300px);height:auto;object-fit:contain;filter:drop-shadow(0 12px 4px #345b3330);z-index:1;animation:bob 3s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-10px)}}
-.art-label{position:absolute;bottom:18px;background:#fff9e5;border-radius:20px;padding:5px 15px;font-size:13px;z-index:2}
-section{padding:76px 8%;scroll-margin-top:70px}
-.section-head{text-align:center;max-width:690px;margin:0 auto 35px}
-.section-head h2{font-size:clamp(27px,4vw,40px);margin:0;color:var(--green)}
-.section-head p{color:#68755f}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:#fffdf4;border:1px solid #e2e2cd;border-radius:18px;padding:24px;box-shadow:0 8px 25px #344d2410}
-.card .emoji{font-size:36px}
-.card h3{margin:8px 0;color:var(--green)}
-.story{background:#e5ebd5}
-.timeline{max-width:800px;margin:auto;display:grid;gap:14px}
-.step{background:#fffdf5;border-radius:14px;padding:18px 22px;display:grid;grid-template-columns:65px 1fr;gap:12px;align-items:start}
-.step b{color:#b28530;font-size:18px}
-.step h3{margin:0 0 5px}
-.step p{margin:0;color:#66705b}
-.science{background:#f7edcf}
-.challenge{background:#fffdf5;border-radius:20px;padding:25px;max-width:760px;margin:auto;text-align:center}
+.art{min-height:300px;border-radius:45% 45% 20px 20px;background:linear-gradient(#c7dfa7,#8db66c 60%,#5f914c);display:grid;place-items:center;position:relative;font-size:110px}
+.art:after{content:"☀️";position:absolute;right:18%;top:10%;font-size:45px}
+.section-title{text-align:center;margin:0 auto 25px;max-width:720px}
+.section-title h2{font-size:clamp(27px,4vw,40px);color:var(--green);margin:6px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card,.panel{background:#fffdf4;border:1px solid #e2e2cd;border-radius:18px;padding:20px;box-shadow:0 8px 24px #3453370a}
+.card .emoji{font-size:35px}
+.card h3{color:var(--green)}
+.steps{display:grid;gap:12px;max-width:850px;margin:auto}
+.step{display:grid;grid-template-columns:55px 1fr;gap:12px;background:#fffdf5;border-radius:14px;padding:16px}
+.step b{font-size:20px;color:#b28530}
+.challenge{max-width:760px;margin:auto;text-align:center}
 .options{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px 0}
-.options button{background:#f2f0df;color:var(--green);border:1px solid #d5d8bf;padding:11px 18px;border-radius:25px;cursor:pointer}
-.options button:hover{background:#dfe8c9}
-#answer{min-height:55px;font-weight:600;color:var(--green)}
-.video-box{max-width:850px;margin:auto;background:#e5ebd5;border-radius:20px;padding:28px;text-align:center}
-.video-box video{width:100%;max-height:460px;border-radius:12px;background:#263e2d}
-.note{font-size:13px;color:#75806a}
-footer{background:#294d32;color:#f7f0d9;text-align:center;padding:35px 20px}
-footer p{margin:4px}
-@media(max-width:760px){nav{padding:12px 5%;flex-wrap:wrap}nav a{margin:0 0 0 10px}.hero{grid-template-columns:1fr;padding:55px 7%}.art{min-height:260px}.cards{grid-template-columns:1fr}section{padding:55px 6%}.step{grid-template-columns:50px 1fr}}
+.options button{border:1px solid #d5d8bf;background:#f2f0df;color:var(--green);padding:11px 16px;border-radius:24px;cursor:pointer}
+#answer{min-height:55px}
+footer{text-align:center;background:#294d32;color:#f7f0d9;padding:25px}
+
+/* 独立农场游戏页面 */
+.farm-page{background:linear-gradient(135deg,#e6edcf,#f6e9bd);padding:22px 4%}
+.farm-header{max-width:1050px;margin:0 auto 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.farm-layout{max-width:1050px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:13px}
+.farm-scene{height:340px;position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(#a8d8e6 0%,#d4eddf 38%,#e8efbd 39%,#91c26f 100%)}
+.sun{position:absolute;right:12%;top:8%;font-size:35px}
+.cloud{position:absolute;left:12%;top:12%;font-size:30px}
+.mountain{position:absolute;bottom:100px;left:-5%;width:110%;height:90px;background:#7eae69;clip-path:polygon(0 65%,18% 12%,37% 65%,58% 0,78% 57%,100% 15%,100% 100%,0 100%)}
+.plot{position:absolute;left:7%;right:7%;bottom:25px;height:170px;background:repeating-linear-gradient(0deg,#805b38 0 8px,#a47a4c 8px 18px);border:7px solid #d9c99a;border-radius:12px;z-index:2}
+.plants{position:absolute;inset:8px;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(3,1fr);align-items:center;justify-items:center}
+.plant{font-size:clamp(22px,3vw,35px)}
+.field-label{position:absolute;left:10px;bottom:8px;z-index:3;background:#204a35;color:white;padding:5px 9px;border-radius:8px;font-size:12px}
+.plot-label{position:absolute;right:10px;bottom:8px;z-index:3;background:#fff6d9;padding:5px 9px;border-radius:8px;font-size:12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stat{padding:10px;background:#f2f6e9;border-radius:12px}
+.statline{display:flex;justify-content:space-between;font-size:13px;font-weight:800}
+.bar{height:7px;background:#dce7d0;border-radius:9px;margin-top:7px;overflow:hidden}
+.bar i{display:block;height:100%;background:#6b9b55;width:50%;transition:width .25s}
+.tools-panel{max-width:1050px;margin:13px auto 0}
+.tools{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.tool{border:1px solid #dce8ce;border-radius:14px;background:#f4f7eb;color:#35573a;padding:12px 5px;font-weight:800;cursor:pointer;min-height:75px}
+.tool span{display:block;font-size:23px}
+.tool small{display:block;font-size:10px;color:#819078;font-weight:500}
+.tool:disabled{opacity:.4;cursor:not-allowed}
+.message{background:#fff3d0;border-radius:13px;padding:12px 14px;line-height:1.7;font-size:13px;margin-top:12px}
+.lower{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px}
+.log{padding-left:20px;margin:0;max-height:120px;overflow:auto;font-size:12px}
+.hint{font-size:13px;color:#71806a}
+@media(max-width:760px){
+ .hero{grid-template-columns:1fr;padding:35px 7%;margin:-36px -6% 0}
+ .art{min-height:220px;font-size:85px}
+ .cards{grid-template-columns:1fr}
+ .farm-layout,.lower{grid-template-columns:1fr}
+ .farm-scene{height:290px}
+ .tools{grid-template-columns:repeat(3,1fr)}
+ .stats{grid-template-columns:1fr 1fr}
+ .page{padding:25px 5%}
+}
 </style>
 </head>
 <body>
 <nav>
   <div class="logo">🌾 禾小满</div>
-
-<div>
-  <a href="#story">成长之旅</a>
-  <a href="#science">田间课堂</a>
-  <a href="#farm">水稻田管理</a>
-  <a href="#game">互动体验</a>
-</div>
-
+  <div class="nav-links">
+    <button class="nav-btn" onclick="showPage('home')">首页</button>
+    <button class="nav-btn" onclick="showPage('story')">成长之旅</button>
+    <button class="nav-btn" onclick="showPage('science')">田间课堂</button>
+    <button class="nav-btn" onclick="showPage('farm')">水稻田管理</button>
+    <button class="nav-btn" onclick="showPage('quiz')">互动体验</button>
+  </div>
 </nav>
 
-<header class="hero">
-  <div>
-    <div class="eyebrow">A GRAIN · A JOURNEY</div>
-    <h1>一粒米的来处，<br><span>不止一场丰收。</span></h1>
-    <p>从一滴雨水落进田野，到一粒稻谷走上餐桌。跟随小小的水稻精灵禾小满，走进真实的农田，看看粮食如何生长，也看看每一碗米饭背后的守护。</p>
-    <a class="btn" href="#story">开启成长之旅 ↗</a>
-    <a class="btn alt" href="#game">和禾小满互动</a>
+<!-- 首页 -->
+<main id="home" class="page active">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">A GRAIN · A JOURNEY</div>
+      <h1>一粒米的来处，<br><span>不止一场丰收。</span></h1>
+      <p>从一滴雨水落进田野，到一粒稻谷走上餐桌。跟随水稻精灵禾小满，看看粮食如何生长，也看看每一碗米饭背后的守护。</p>
+      <button class="btn" onclick="showPage('story')">开启成长之旅 ↗</button>
+      <button class="btn alt" onclick="showPage('farm')">进入水稻田 ↗</button>
+    </div>
+    <div class="art" aria-label="禾小满水稻精灵">🌾👩‍🌾</div>
+  </header>
+  <div class="cards" style="margin-top:20px">
+    <article class="card"><div class="emoji">🌱</div><h3>传统农耕</h3><p>从一粒种子开始，感受土地与季节的变化。</p></article>
+    <article class="card"><div class="emoji">🌦️</div><h3>田间观察</h3><p>关注水分、杂草和虫害，了解科学种植的意义。</p></article>
+    <article class="card"><div class="emoji">🚁</div><h3>农业科技</h3><p>气象信息和智能设备，让农田管理更加细致。</p></article>
   </div>
- <div class="art">
-  <div class="sun"></div>
-  <img class="character" src="hexiaoman1.png" alt="禾小满水稻IP形象">
-  <div class="art-label">你好，我叫禾小满！</div>
-</div>
-</header>
+</main>
 
-<section id="story" class="story">
-  <div class="section-head">
-    <div class="eyebrow">GROWING UP</div>
-    <h2>禾小满的成长日记</h2>
-    <p>成长从来不是一帆风顺。每一次风雨、每一次帮助，都让一粒种子离丰收更近一点。</p>
+<!-- 成长之旅独立页面 -->
+<section id="story" class="page">
+  <div class="section-title"><div class="eyebrow">GROWING UP</div><h2>禾小满的成长日记</h2><p>每一次风雨、每一次帮助，都让一粒种子离丰收更近一点。</p></div>
+  <div class="steps">
+    <article class="step"><b>01</b><div><h3>🌱 初见泥土</h3><p>一粒小小的种子落进温暖的田土，开始了自己的旅程。</p></div></article>
+    <article class="step"><b>02</b><div><h3>💧 雨水的秘密</h3><p>细雨滋润禾苗，也带来第一次关于自然的惊喜。</p></div></article>
+    <article class="step"><b>03</b><div><h3>🌧️ 突如其来的考验</h3><p>暴雨、烈日和虫害，都可能成为水稻成长中的挑战。</p></div></article>
+    <article class="step"><b>04</b><div><h3>🤲 田野里的守护者</h3><p>农民查看水情、扶起倒伏的稻株，用经验守护每一株禾苗。</p></div></article>
+    <article class="step"><b>05</b><div><h3>🚜 科技带来的新力量</h3><p>气象预报、智能设备和精准巡田帮助人们更早发现问题。</p></div></article>
+    <article class="step"><b>06</b><div><h3>🌾 终于迎来金色</h3><p>稻穗成熟，一粒米的旅程凝结着土地、阳光和人的付出。</p></div></article>
   </div>
-  <div class="timeline">
-    <article class="step"><b>01</b><div><h3>🌱 初见泥土</h3><p>一粒小小的种子落进温暖的田土。它还不知道，未来会遇见怎样的世界。</p></div></article>
-    <article class="step"><b>02</b><div><h3>💧 雨水的秘密</h3><p>“咦？原来雨水是凉凉的！”细雨滋润着禾苗，也带来了第一次关于自然的惊喜。</p></div></article>
-    <article class="step"><b>03</b><div><h3>🌧️ 突如其来的考验</h3><p>暴雨压弯叶片，烈日让土地干裂，虫害也悄悄靠近。小小的禾苗第一次感到害怕。</p></div></article>
-    <article class="step"><b>04</b><div><h3>🤲 田野里的守护者</h3><p>农民发现受伤的禾苗，扶起倒伏的稻株、查看田间水情。那些看似平凡的动作，藏着日复一日的经验与辛劳。</p></div></article>
-    <article class="step"><b>05</b><div><h3>🚜 科技带来的新力量</h3><p>气象预报、科学灌溉、无人机巡田与精准植保，让种植更科学，也帮助人们更早发现问题。</p></div></article>
-    <article class="step"><b>06</b><div><h3>🌾 终于迎来金色</h3><p>经历风雨的禾苗结出稻穗。一粒米的旅程走过春夏，也凝结着土地、阳光和人的付出。</p></div></article>
-  </div>
+  <p style="text-align:center;margin-top:25px"><button class="btn" onclick="showPage('home')">← 返回首页</button></p>
 </section>
 
-<section>
-  <div class="section-head">
-    <div class="eyebrow">MEET HE XIAOMAN</div>
-    <h2>认识我的田野伙伴</h2>
-    <p>别看我小小一只，我的成长故事里有很多值得了解的事。</p>
-  </div>
-  <div class="cards">
-    <article class="card"><div class="emoji">🌾</div><h3>禾小满</h3><p>好奇、勇敢，也会害怕。每一次遇见困难，都让它更懂得生命的韧性。</p></article>
-    <article class="card"><div class="emoji">👩‍🌾</div><h3>田野守护者</h3><p>播种、育秧、灌溉、除草、收割。粮食背后，是农民长期的劳动与经验。</p></article>
-    <article class="card"><div class="emoji">🛰️</div><h3>农业新帮手</h3><p>传感器、气象信息和智能设备，帮助人们观察农田、判断风险、科学管理。</p></article>
-  </div>
-</section>
-
-<section id="science" class="science">
-  <div class="section-head">
-    <div class="eyebrow">FIELD CLASSROOM</div>
-    <h2>一粒米背后的学问</h2>
-    <p>传统经验与现代科技并肩，让每一寸土地得到更细致的照料。</p>
-  </div>
+<!-- 田间课堂独立页面 -->
+<section id="science" class="page">
+  <div class="section-title"><div class="eyebrow">FIELD CLASSROOM</div><h2>一粒米背后的学问</h2><p>传统经验与现代科技并肩，让每一寸土地得到更细致的照料。</p></div>
   <div class="cards">
     <article class="card"><div class="emoji">🌱</div><h3>传统农耕智慧</h3><p>看天时、察水情、因地制宜。长期积累的种植经验，是农业生产的重要基础。</p></article>
-    <article class="card"><div class="emoji">🌦️</div><h3>提前发现风险</h3><p>天气预报和田间监测能帮助农户关注暴雨、高温与干旱风险，及时安排农事。</p></article>
-    <article class="card"><div class="emoji">🚁</div><h3>精准管理农田</h3><p>无人机和智能设备可以辅助巡田、监测作物状况，让农业管理更高效、更精准。</p></article>
+    <article class="card"><div class="emoji">🌦️</div><h3>提前发现风险</h3><p>天气预报和田间监测可以帮助农户关注暴雨、高温与干旱风险。</p></article>
+    <article class="card"><div class="emoji">🚁</div><h3>精准管理农田</h3><p>无人机和智能设备可以辅助巡田、监测作物状况，让农业管理更高效。</p></article>
+  </div>
+  <p style="text-align:center;margin-top:25px"><button class="btn" onclick="showPage('home')">← 返回首页</button></p>
+</section>
+
+<!-- 独立水稻田游戏页面 -->
+<section id="farm" class="page farm-page">
+  <div class="farm-header">
+    <button class="btn" onclick="showPage('home')">← 返回首页</button>
+    <div><h2 style="margin:0;color:#315d3b">🌾 我的水稻田</h2><div class="hint">照料稻苗，看看每一天的变化。</div></div>
+    <div class="hint">📅 第 <b id="day">1</b> 天 · <span id="weather">晴天</span></div>
+  </div>
+
+  <div class="farm-layout">
+    <div class="panel">
+      <div class="farm-scene" id="farmScene">
+        <div class="sun" id="sun">☀️</div><div class="cloud" id="cloud">☁️</div><div class="mountain"></div>
+        <div class="plot"><div class="plants" id="plants"></div></div>
+        <div class="field-label" id="stage">等待播种</div><div class="plot-label">禾小满的小稻田</div>
+      </div>
+      <div class="message" id="message">禾小满：先播种，开始我们的农场生活吧！</div>
+    </div>
+    <div class="panel">
+      <h3 style="margin-top:0">📋 稻田状态</h3>
+      <div class="stats">
+        <div class="stat"><div class="statline"><span>💧 水分</span><span id="waterN">50%</span></div><div class="bar"><i id="waterB"></i></div></div>
+        <div class="stat"><div class="statline"><span>💚 健康</span><span id="healthN">100%</span></div><div class="bar"><i id="healthB"></i></div></div>
+        <div class="stat"><div class="statline"><span>🌿 杂草</span><span id="weedN">20%</span></div><div class="bar"><i id="weedB"></i></div></div>
+        <div class="stat"><div class="statline"><span>🐛 虫害</span><span id="pestN">10%</span></div><div class="bar"><i id="pestB"></i></div></div>
+        <div class="stat"><div class="statline"><span>🌱 养分</span><span id="nutN">50%</span></div><div class="bar"><i id="nutB"></i></div></div>
+        <div class="stat"><div class="statline"><span>🌾 成长</span><span id="growthN">0%</span></div><div class="bar"><i id="growthB"></i></div></div>
+      </div>
+      <div class="message" id="lesson">小提示：先观察状态，再选择合适的工具。</div>
+    </div>
+  </div>
+
+  <div class="panel tools-panel">
+    <h3 style="margin-top:0">🧰 农场工具</h3>
+    <div class="tools">
+      <button class="tool" data-tool="plant" onclick="act('plant')"><span>🌰</span>播种<small>开始种植</small></button>
+      <button class="tool" data-tool="water" onclick="act('water')"><span>💧</span>浇水<small>增加水分</small></button>
+      <button class="tool" data-tool="weed" onclick="act('weed')"><span>🌿</span>除草<small>减少杂草</small></button>
+      <button class="tool" data-tool="pest" onclick="act('pest')"><span>🐛</span>治虫<small>降低虫害</small></button>
+      <button class="tool" data-tool="fert" onclick="act('fert')"><span>🪴</span>施肥<small>增加养分</small></button>
+      <button class="tool" data-tool="observe" onclick="act('observe')"><span>🔎</span>观察<small>找出问题</small></button>
+      <button class="tool" data-tool="drain" onclick="act('drain')"><span>🪣</span>排水<small>降低水分</small></button>
+      <button class="tool" data-tool="sun" onclick="act('sun')"><span>🌤️</span>看天气<small>了解天气</small></button>
+      <button class="tool" data-tool="next" onclick="act('next')"><span>📆</span>过一天<small>稻田继续变化</small></button>
+      <button class="tool" data-tool="harvest" onclick="act('harvest')"><span>🌾</span>收获<small>成熟后解锁</small></button>
+    </div>
+    <div class="message" id="farmHint">点击“播种”开始。每天照料稻田，成长达到100%后即可收获。</div>
+  </div>
+  <div class="lower">
+    <div class="panel"><h3 style="margin-top:0">📔 今日农场日记</h3><ul class="log" id="logs"><li>农场准备好了，等待播种。</li></ul></div>
+    <div class="panel"><h3 style="margin-top:0">🏆 农场目标</h3><p class="hint" id="goal">播下种子，让稻苗成长到100%，然后点击收获。</p><button class="btn" onclick="restartFarm()">重新开始</button></div>
   </div>
 </section>
 
-<section id="farm" style="padding:60px 8%;background:#edf1df;">
-  <div style="text-align:center;margin-bottom:30px;">
-    <div style="letter-spacing:3px;color:#6a7a43;">MY RICE FIELD</div>
-    <h2 style="font-size:36px;color:#315d3b;margin:5px;">🌾 我的水稻田</h2>
-    <p>每天巡田，及时发现虫害、杂草和水分问题。</p>
-  </div>
-
-  <div style="max-width:950px;margin:auto;background:#fffdf4;padding:24px;border-radius:20px;">
-    <h3>🌱 田间实时状态</h3>
-
-    <div class="farm-grid">
-      <div class="farm-card">
-        <div style="font-size:32px;">🌾</div>
-        <h3>水稻健康</h3>
-        <strong id="healthValue">78%</strong>
-        <div class="farm-bar"><div id="healthBar" style="width:78%;background:#57934d"></div></div>
-      </div>
-
-      <div class="farm-card">
-        <div style="font-size:32px;">🐛</div>
-        <h3>虫害程度</h3>
-        <strong id="pestValue">48%</strong>
-        <div class="farm-bar"><div id="pestBar" style="width:48%;background:#d49b43"></div></div>
-        <p id="pestStatus">⚠ 虫害需要关注</p>
-      </div>
-
-      <div class="farm-card">
-        <div style="font-size:32px;">🌿</div>
-        <h3>杂草密度</h3>
-        <strong id="weedValue">68%</strong>
-        <div class="farm-bar"><div id="weedBar" style="width:68%;background:#7d9d45"></div></div>
-        <p id="weedStatus">⚠ 建议除草</p>
-      </div>
-
-      <div class="farm-card">
-        <div style="font-size:32px;">💧</div>
-        <h3>田间水分</h3>
-        <strong id="waterValue">62%</strong>
-        <div class="farm-bar"><div id="waterBar" style="width:62%;background:#559fc4"></div></div>
-        <p id="waterStatus">✓ 水分基本适宜</p>
-      </div>
-    </div>
-
-    <h3>🧑‍🌾 田间管理操作</h3>
-    <div class="farm-actions">
-      <button onclick="inspectFarm()">🔍 巡田检查</button>
-      <button onclick="treatPests()">🛡️ 处理虫害</button>
-      <button onclick="removeWeeds()">🌿 进行除草</button>
-      <button onclick="addWater()">💧 适量补水</button>
-      <button onclick="drainWater()">↘️ 适当排水</button>
-      <button onclick="nextFarmDay()">☀️ 进入下一天</button>
-    </div>
-
-    <div id="farmMessage" role="status" style="margin-top:18px;background:#e5ebd5;padding:15px;border-radius:12px;">
-      禾小满：今天也来巡田吧！看看有什么需要帮助的。
-    </div>
-
-    <h3>📒 今日农事记录</h3>
-    <ul id="farmLog">
-      <li>种植第12天：发现虫害与杂草需要关注。</li>
-    </ul>
-
-    <p style="font-size:12px;color:#75806a;">
-      说明：这是用于互动展示的模拟数据，不代表真实农田诊断。真实防治应结合当地农技指导。
-    </p>
-  </div>
-</section>
-
-<style>
-.farm-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
-}
-.farm-card {
-  padding:18px;
-  border-radius:15px;
-  background:#f4f3e5;
-  border:1px solid #e2e2cd;
-}
-.farm-card h3 {
-  margin:4px 0;
-  color:#315d3b;
-}
-.farm-card strong {
-  font-size:24px;
-  color:#315d3b;
-}
-.farm-card p {
-  margin-bottom:0;
-  font-size:13px;
-}
-.farm-bar {
-  height:9px;
-  margin-top:8px;
-  background:#dfe4d2;
-  border-radius:10px;
-  overflow:hidden;
-}
-.farm-bar div {
-  height:100%;
-  border-radius:10px;
-  transition:width .3s;
-}
-.farm-actions {
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.farm-actions button {
-  border:0;
-  border-radius:22px;
-  padding:11px 16px;
-  background:#315d3b;
-  color:white;
-  cursor:pointer;
-  font-size:14px;
-}
-.farm-actions button:hover {
-  background:#49784d;
-}
-@media(max-width:600px) {
-  .farm-grid {grid-template-columns:1fr;}
-}
-
-/* 水稻田管理面板样式 */
-#farm {
-  display: block !important;
-  visibility: visible !important;
-  color: #273c2d;
-}
-
-#farm .farm-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-#farm .farm-card {
-  display: block;
-  padding: 18px;
-  border-radius: 15px;
-  background: #f4f3e5;
-  border: 1px solid #e2e2cd;
-}
-
-#farm .farm-bar {
-  height: 9px;
-  margin-top: 8px;
-  background: #dfe4d2;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-#farm .farm-bar div {
-  height: 100%;
-  border-radius: 10px;
-  transition: width .3s;
-}
-
-#farm .farm-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-#farm .farm-actions button {
-  border: 0;
-  border-radius: 22px;
-  padding: 11px 16px;
-  background: #315d3b;
-  color: white;
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  #farm .farm-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-</style>
-
-<section id="game">
-  <div class="section-head">
-    <div class="eyebrow">MAKE A CHOICE</div>
-    <h2>如果你是禾小满的守护者</h2>
-    <p>田野突然遇到问题，你会怎么做？选一个你认为合适的行动吧。</p>
-  </div>
-  <div class="challenge">
-    <div class="emoji">🌧️</div>
-    <h3>挑战一：暴雨来临，田里积水了</h3>
-    <p>你会怎样帮助禾苗？</p>
+<!-- 互动体验独立页面 -->
+<section id="quiz" class="page">
+  <div class="section-title"><div class="eyebrow">MAKE A CHOICE</div><h2>如果你是禾小满的守护者</h2><p>田野突然遇到问题，你会怎么做？选一个你认为合适的行动吧。</p></div>
+  <div class="panel challenge">
+    <div style="font-size:42px" id="quizEmoji">🌧️</div>
+    <h3 id="quizTitle">挑战一：暴雨来临，田里积水了</h3>
+    <p id="quizQuestion">你会怎样帮助禾苗？</p>
     <div class="options">
-      <button onclick="answer(1)">A. 观察水情，及时排水</button>
-      <button onclick="answer(2)">B. 什么也不做，等太阳出来</button>
-      <button onclick="answer(3)">C. 不看情况，直接大量施肥</button>
+      <button onclick="answerQuiz(1)">A. 观察水情，及时排水</button>
+      <button onclick="answerQuiz(2)">B. 什么也不做，等太阳出来</button>
+      <button onclick="answerQuiz(3)">C. 不看情况，直接大量施肥</button>
     </div>
-    <div id="answer" aria-live="polite">选择一个答案，看看禾小满怎么说。</div>
+    <div id="answer">选择一个答案，看看禾小满怎么说。</div>
     <button class="btn" onclick="nextQuestion()">下一道挑战 ↗</button>
   </div>
+  <p style="text-align:center;margin-top:25px"><button class="btn" onclick="showPage('home')">← 返回首页</button></p>
 </section>
 
-<section id="video">
-  <div class="section-head">
-    <div class="eyebrow">WATCH THE STORY</div>
-    <h2>把禾小满的故事放映出来</h2>
-    <p>这里可以展示你制作好的 AI 动画，让观众在网页中直接观看。</p>
-  </div>
-  <div class="video-box">
-    <video controls preload="metadata" poster="">
-      <source src="he-xiaoman.mp4" type="video/mp4">
-      你的浏览器暂不支持视频播放。
-    </video>
-    <p class="note">视频准备好后，将 MP4 文件上传到仓库，并命名为 he-xiaoman.mp4。</p>
-  </div>
-</section>
-
-<footer>
-  <p>🌾 禾小满：一粒米的来处</p>
-  <p>从一粒种子出发，看见土地、劳动与粮食的意义。</p>
-  <p style="font-size:12px;opacity:.7;margin-top:12px">互动数字文化体验 · 学生创作项目</p>
-</footer>
+<footer><p>🌾 禾小满：一粒米的来处</p><p>从一粒种子出发，看见土地、劳动与粮食的意义。</p></footer>
 
 <script>
-  
-/* ===== 禾小满：水稻田管理系统 ===== */
-
-let farmDay = 12;
-
-let farm = {
-  health: 78,
-  pest: 48,
-  weed: 68,
-  water: 62
-};
-
-function limitFarmValue(value) {
-  return Math.max(0, Math.min(100, value));
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const page=document.getElementById(id);
+  if(page)page.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='farm')drawFarm();
 }
 
-function updateFarm(message) {
-  farm.health = limitFarmValue(farm.health);
-  farm.pest = limitFarmValue(farm.pest);
-  farm.weed = limitFarmValue(farm.weed);
-  farm.water = limitFarmValue(farm.water);
+const initialFarm=()=>({day:1,water:50,health:100,weed:20,pest:10,nut:50,growth:0,planted:false,weather:'晴天',logs:['农场准备好了，等待播种。'],done:false,harvested:false});
+let f=initialFarm();
 
-  document.getElementById("healthValue").textContent =
-    farm.health + "%";
-  document.getElementById("pestValue").textContent =
-    farm.pest + "%";
-  document.getElementById("weedValue").textContent =
-    farm.weed + "%";
-  document.getElementById("waterValue").textContent =
-    farm.water + "%";
-
-  document.getElementById("healthBar").style.width =
-    farm.health + "%";
-  document.getElementById("pestBar").style.width =
-    farm.pest + "%";
-  document.getElementById("weedBar").style.width =
-    farm.weed + "%";
-  document.getElementById("waterBar").style.width =
-    farm.water + "%";
-
-  document.getElementById("pestStatus").textContent =
-    farm.pest < 20 ? "✓ 虫害较轻" :
-    farm.pest < 50 ? "⚠ 虫害需要关注" : "🚨 虫害程度较高";
-
-  document.getElementById("weedStatus").textContent =
-    farm.weed < 20 ? "✓ 杂草较少" :
-    farm.weed < 50 ? "⚠ 继续观察" : "🌿 建议除草";
-
-  document.getElementById("waterStatus").textContent =
-    farm.water < 35 ? "⚠ 水分偏低" :
-    farm.water > 75 ? "⚠ 水分偏高" : "✓ 水分基本适宜";
-
-  document.getElementById("farmMessage").textContent = message;
-}
-
-function addFarmLog(message) {
-  const log = document.getElementById("farmLog");
-  const item = document.createElement("li");
-
-  item.textContent =
-    "第" + farmDay + "天：" + message;
-
-  log.prepend(item);
-
-  while (log.children.length > 8) {
-    log.removeChild(log.lastChild);
+function clamp(n){return Math.max(0,Math.min(100,Math.round(n)))}
+function addLog(t){f.logs.unshift('第'+f.day+'天：'+t);f.logs=f.logs.slice(0,10)}
+function message(t){document.getElementById('message').textContent='禾小满：'+t}
+function drawFarm(){
+  const values={water:f.water,health:f.health,weed:f.weed,pest:f.pest,nut:f.nut,growth:f.growth};
+  for(const [key,val] of Object.entries(values)){
+    document.getElementById(key+'N').textContent=val+'%';
+    document.getElementById(key+'B').style.width=val+'%';
+    document.getElementById(key+'B').style.background=(key==='health'&&val<40)||(key==='water'&&(val<30||val>75))||(key==='weed'&&val>40)||(key==='pest'&&val>35)||(key==='nut'&&val<30)?'#d87548':'#6b9b55';
   }
+  document.getElementById('day').textContent=f.day;
+  document.getElementById('weather').textContent=f.weather;
+  document.getElementById('sun').textContent=f.weather==='小雨'?'🌧️':f.weather==='阴天'?'🌥️':'☀️';
+  document.getElementById('cloud').textContent=f.weather==='小雨'?'🌧️':'☁️';
+  document.getElementById('plants').innerHTML=Array.from({length:15},(_,i)=>{
+    const plant=!f.planted?'🟫':f.growth<20?'🌱':f.growth<45?'🌱':f.growth<70?'🌿':'🌾';
+    return '<span class="plant">'+plant+'</span>';
+  }).join('');
+  document.getElementById('stage').textContent=!f.planted?'等待播种':f.growth<20?'种子发芽':f.growth<45?'嫩绿秧苗':f.growth<70?'稻苗长高':f.growth<100?'稻穗成熟中':'稻谷成熟！';
+  document.getElementById('logs').innerHTML=f.logs.map(t=>'<li>'+t+'</li>').join('');
+  document.getElementById('goal').textContent=f.harvested?'🎉 收获成功！你照料了'+f.day+'天，记得珍惜粮食！':'播下种子，让稻苗成长到100%，然后点击收获。';
+  document.querySelectorAll('[data-tool]').forEach(b=>{
+    const a=b.dataset.tool;
+    b.disabled=f.done||f.harvested||(a==='plant'&&f.planted)||(a==='harvest'&&f.growth<100)||(!f.planted&&a!=='plant');
+  });
 }
-
-function inspectFarm() {
-  farm.pest = Math.max(0, farm.pest - 5);
-  farm.weed = Math.max(0, farm.weed - 3);
-
-  updateFarm(
-    "巡田完成！你检查了稻叶和田间杂草，发现问题后可以进一步处理。"
-  );
-
-  addFarmLog("完成巡田，检查虫害与杂草情况。");
-}
-
-function treatPests() {
-  if (farm.pest === 0) {
-    updateFarm("目前模拟虫害指标已经为零，继续观察就好！");
-    return;
+function act(a){
+  if(f.done||f.harvested){message('这一轮结束啦，点击重新开始可以再种一轮。');return}
+  if(a==='plant'){
+    if(f.planted){message('已经播种啦！');return}
+    f.planted=true;f.growth=5;addLog('播下了水稻种子。');message('种子播好啦！接下来开始照料稻苗。');
+  }else if(!f.planted){message('先播种吧！播种后其他工具才会派上用场。');return}
+  else if(a==='observe'){
+    const issues=[];
+    if(f.water<30)issues.push('水分偏低');
+    if(f.water>75)issues.push('水分偏高');
+    if(f.weed>40)issues.push('杂草较多');
+    if(f.pest>35)issues.push('虫害偏高');
+    if(f.nut<30)issues.push('养分不足');
+    message(issues.length?'巡田发现：'+issues.join('、')+'。先处理这些问题。':'巡田完成！目前状态不错，继续保持。');
+    addLog('完成巡田检查。');
+  }else if(a==='water'){
+    if(f.water>75){f.health-=5;message('水分已经较高，建议先检查情况，不要继续补水。')}
+    else{f.water+=22;message('浇水完成！水分增加了。')}
+    addLog('进行了浇水操作。');
+  }else if(a==='drain'){
+    if(f.water<30)message('田里水分不多，暂时不用排水。');
+    else{f.water-=25;message('排水完成！多余水分减少了。'}
+    addLog('进行了排水操作。');
+  }else if(a==='weed'){
+    f.weed-=35;message('除草完成！杂草减少，稻苗有了更多生长空间。');addLog('清理田间杂草。');
+  }else if(a==='pest'){
+    f.pest-=30;f.health+=4;message('模拟治虫完成！虫害指标下降。');addLog('进行了模拟虫害处理。');
+  }else if(a==='fert'){
+    if(f.nut>80){f.health-=5;message('养分已经很充足，暂时不要重复施肥。')}
+    else{f.nut+=25;message('施肥完成！养分增加了。'}
+    addLog('进行了施肥操作。');
+  }else if(a==='sun'){
+    message('今天是'+f.weather+'。观察天气后，再决定是否需要浇水或排水。');addLog('观察了天气。');
+  }else if(a==='next'){
+    f.day++;
+    f.weather=['晴天','多云','小雨','阴天'][Math.floor(Math.random()*4)];
+    f.water+=f.weather==='小雨'?15:-8;
+    f.weed+=10;f.pest+=6;f.nut-=5;
+    if(f.water<30||f.water>75||f.weed>40||f.pest>35||f.nut<30)f.health-=8;
+    else f.health-=1;
+    f.growth+=f.health>20?20:5;
+    message('第'+f.day+'天，天气是'+f.weather+'。检查状态，继续照料稻田吧！');
+    addLog('新的一天开始，稻田状态发生变化。');
+    if(f.growth>=100)message('稻穗成熟啦！点击“收获”完成目标。');
+    if(f.health<=0){f.done=true;message('稻苗健康度降到0，本轮结束啦。可以重新开始。')}
+  }else if(a==='harvest'){
+    if(f.growth<100){message('稻谷还没成熟，再照料几天吧！');return}
+    f.harvested=true;message('收获成功！一粒米从种植到收获，需要很多耐心和劳动。');addLog('收获稻谷，挑战完成。');
   }
-
-  farm.pest -= 25;
-  farm.health += 5;
-
-  updateFarm(
-    "模拟防虫操作完成！虫害指标下降，水稻健康有所改善。"
-  );
-
-  addFarmLog("完成模拟虫害处理。");
+  for(const k of ['water','health','weed','pest','nut','growth'])f[k]=clamp(f[k]);
+  document.getElementById('farmHint').textContent='当前状态：水分'+f.water+'%，健康'+f.health+'%，成长'+f.growth+'%。继续观察并选择工具。';
+  document.getElementById('lesson').textContent='提示：水分、杂草、虫害和养分都会影响稻苗成长。';
+  drawFarm();
 }
+function restartFarm(){f=initialFarm();message('农场已经准备好，先播种吧！');document.getElementById('farmHint').textContent='点击“播种”开始。每天照料稻田，成长达到100%后即可收获。';drawFarm()}
 
-function removeWeeds() {
-  if (farm.weed === 0) {
-    updateFarm("杂草指标已经为零啦，记得继续巡田！");
-    return;
+let quizQuestion=0;
+function answerQuiz(n){
+  const answer=document.getElementById('answer');
+  if(quizQuestion===0){
+    answer.textContent=n===1?'答对啦！先观察积水情况，再结合田块条件及时排水。':n===2?'再想一想：长时间积水可能影响水稻生长，要关注田间水情。':'施肥不是解决积水的办法。先观察情况，科学管理水分更重要。';
+  }else{
+    answer.textContent=n===1?'做得好！先观察天气和土壤，再科学补水。':n===2?'浇水也不能盲目，要结合实际情况判断。':'忽视天气和禾苗变化，可能错过处理问题的时机。';
   }
-
-  farm.weed -= 30;
-  farm.health += 6;
-
-  updateFarm(
-    "除草完成！杂草密度下降，禾苗有了更多生长空间。"
-  );
-
-  addFarmLog("完成模拟田间除草。");
-}
-
-function addWater() {
-  if (farm.water >= 90) {
-    updateFarm("当前模拟水分已经较高，先检查田间情况，不要盲目补水。");
-    return;
-  }
-
-  farm.water += 15;
-  farm.health += 2;
-
-  updateFarm(
-    "模拟补水完成！田间水分指标上升。是否需要补水仍应结合实际情况判断。"
-  );
-
-  addFarmLog("完成模拟补水。");
-}
-
-function drainWater() {
-  if (farm.water <= 15) {
-    updateFarm("当前模拟水分较低，不宜继续排水，请先检查田间情况。");
-    return;
-  }
-
-  farm.water -= 18;
-  farm.health += 1;
-
-  updateFarm(
-    "模拟排水完成！水分指标下降。实际操作应根据天气和田块条件决定。"
-  );
-
-  addFarmLog("完成模拟排水。");
-}
-
-function nextFarmDay() {
-  farmDay++;
-
-  farm.water -= 5;
-  farm.pest += 6;
-  farm.weed += 5;
-
-  if (farm.pest > 65 || farm.weed > 75 || farm.water < 30) {
-    farm.health -= 5;
-  } else {
-    farm.health -= 1;
-  }
-
-  updateFarm(
-    "新的一天开始了！水分会发生变化，虫害和杂草也可能增加，记得继续巡田。"
-  );
-
-  addFarmLog("进入新的一天，田间状态发生变化。");
-}
-
-updateFarm("禾小满：今天也来巡田吧！点击管理按钮，照顾好我们的稻田。");
-
-let question=0;
-function answer(n){
- const box=document.getElementById('answer');
- if(question===0){
-  if(n===1){box.textContent='答对啦！先观察积水情况，结合田块条件及时排水，能降低禾苗受淹的风险。';}
-  else if(n===2){box.textContent='再想一想：长时间积水可能影响水稻根系生长，遇到强降雨要关注田间水情。';}
-  else{box.textContent='施肥不是解决积水的办法。先观察田间情况，科学管理水分更重要。';}
- }else{
-  if(n===1){box.textContent='做得好！关注天气预警、田间水情和作物变化，才能更早发现风险。';}
-  else if(n===2){box.textContent='还可以更主动一些：了解天气和作物情况，必要时向有经验的农户或农技人员求助。';}
-  else{box.textContent='每块田的情况不同，不能盲目处理。先观察、再判断，才是科学的守护方式。';}
- }
 }
 function nextQuestion(){
- question=question===0?1:0;
- document.querySelector('#game .challenge h3').textContent=question===0?'挑战一：暴雨来临，田里积水了':'挑战二：连续高温，禾苗看起来有些缺水';
- document.querySelector('#game .challenge .emoji').textContent=question===0?'🌧️':'☀️';
- document.querySelector('#game .challenge p').textContent=question===0?'你会怎样帮助禾苗？':'你会怎样判断并帮助禾苗？';
- document.querySelectorAll('#game .options button')[0].textContent=question===0?'A. 观察水情，及时排水':'A. 观察土壤和天气，科学补水';
- document.querySelectorAll('#game .options button')[1].textContent=question===0?'B. 什么也不做，等太阳出来':'B. 不看情况，一直大量浇水';
- document.querySelectorAll('#game .options button')[2].textContent=question===0?'C. 不看情况，直接大量施肥':'C. 忽视预警，不管禾苗';
- document.getElementById('answer').textContent='选择一个答案，看看禾小满怎么说。';
+  quizQuestion=quizQuestion===0?1:0;
+  document.getElementById('quizEmoji').textContent=quizQuestion===0?'🌧️':'☀️';
+  document.getElementById('quizTitle').textContent=quizQuestion===0?'挑战一：暴雨来临，田里积水了':'挑战二：连续高温，禾苗看起来有些缺水';
+  document.getElementById('quizQuestion').textContent=quizQuestion===0?'你会怎样帮助禾苗？':'你会怎样判断并帮助禾苗？';
+  const buttons=document.querySelectorAll('#quiz .options button');
+  buttons[0].textContent=quizQuestion===0?'A. 观察水情，及时排水':'A. 观察土壤和天气，科学补水';
+  buttons[1].textContent=quizQuestion===0?'B. 什么也不做，等太阳出来':'B. 不看情况，一直大量浇水';
+  buttons[2].textContent=quizQuestion===0?'C. 不看情况，直接大量施肥':'C. 忽视预警，不管禾苗';
+  document.getElementById('answer').textContent='选择一个答案，看看禾小满怎么说。';
 }
+drawFarm();
 </script>
 </body>
 </html>
-
