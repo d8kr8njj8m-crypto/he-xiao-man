@@ -56,7 +56,14 @@ footer p{margin:4px}
 <body>
 <nav>
   <div class="logo">🌾 禾小满</div>
-  <div><a href="#story">成长之旅</a><a href="#science">田间课堂</a><a href="#game">互动体验</a></div>
+
+<div>
+  <a href="#story">成长之旅</a>
+  <a href="#science">田间课堂</a>
+  <a href="#farm">水稻田管理</a>
+  <a href="#game">互动体验</a>
+</div>
+
 </nav>
 
 <header class="hero">
@@ -116,6 +123,132 @@ footer p{margin:4px}
   </div>
 </section>
 
+<section id="farm" style="padding:60px 8%;background:#edf1df;">
+  <div style="text-align:center;margin-bottom:30px;">
+    <div style="letter-spacing:3px;color:#6a7a43;">MY RICE FIELD</div>
+    <h2 style="font-size:36px;color:#315d3b;margin:5px;">🌾 我的水稻田</h2>
+    <p>每天巡田，及时发现虫害、杂草和水分问题。</p>
+  </div>
+
+  <div style="max-width:950px;margin:auto;background:#fffdf4;padding:24px;border-radius:20px;">
+    <h3>🌱 田间实时状态</h3>
+
+    <div class="farm-grid">
+      <div class="farm-card">
+        <div style="font-size:32px;">🌾</div>
+        <h3>水稻健康</h3>
+        <strong id="healthValue">78%</strong>
+        <div class="farm-bar"><div id="healthBar" style="width:78%;background:#57934d"></div></div>
+      </div>
+
+      <div class="farm-card">
+        <div style="font-size:32px;">🐛</div>
+        <h3>虫害程度</h3>
+        <strong id="pestValue">48%</strong>
+        <div class="farm-bar"><div id="pestBar" style="width:48%;background:#d49b43"></div></div>
+        <p id="pestStatus">⚠ 虫害需要关注</p>
+      </div>
+
+      <div class="farm-card">
+        <div style="font-size:32px;">🌿</div>
+        <h3>杂草密度</h3>
+        <strong id="weedValue">68%</strong>
+        <div class="farm-bar"><div id="weedBar" style="width:68%;background:#7d9d45"></div></div>
+        <p id="weedStatus">⚠ 建议除草</p>
+      </div>
+
+      <div class="farm-card">
+        <div style="font-size:32px;">💧</div>
+        <h3>田间水分</h3>
+        <strong id="waterValue">62%</strong>
+        <div class="farm-bar"><div id="waterBar" style="width:62%;background:#559fc4"></div></div>
+        <p id="waterStatus">✓ 水分基本适宜</p>
+      </div>
+    </div>
+
+    <h3>🧑‍🌾 田间管理操作</h3>
+    <div class="farm-actions">
+      <button onclick="inspectFarm()">🔍 巡田检查</button>
+      <button onclick="treatPests()">🛡️ 处理虫害</button>
+      <button onclick="removeWeeds()">🌿 进行除草</button>
+      <button onclick="addWater()">💧 适量补水</button>
+      <button onclick="drainWater()">↘️ 适当排水</button>
+      <button onclick="nextFarmDay()">☀️ 进入下一天</button>
+    </div>
+
+    <div id="farmMessage" role="status" style="margin-top:18px;background:#e5ebd5;padding:15px;border-radius:12px;">
+      禾小满：今天也来巡田吧！看看有什么需要帮助的。
+    </div>
+
+    <h3>📒 今日农事记录</h3>
+    <ul id="farmLog">
+      <li>种植第12天：发现虫害与杂草需要关注。</li>
+    </ul>
+
+    <p style="font-size:12px;color:#75806a;">
+      说明：这是用于互动展示的模拟数据，不代表真实农田诊断。真实防治应结合当地农技指导。
+    </p>
+  </div>
+</section>
+
+<style>
+.farm-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.farm-card {
+  padding:18px;
+  border-radius:15px;
+  background:#f4f3e5;
+  border:1px solid #e2e2cd;
+}
+.farm-card h3 {
+  margin:4px 0;
+  color:#315d3b;
+}
+.farm-card strong {
+  font-size:24px;
+  color:#315d3b;
+}
+.farm-card p {
+  margin-bottom:0;
+  font-size:13px;
+}
+.farm-bar {
+  height:9px;
+  margin-top:8px;
+  background:#dfe4d2;
+  border-radius:10px;
+  overflow:hidden;
+}
+.farm-bar div {
+  height:100%;
+  border-radius:10px;
+  transition:width .3s;
+}
+.farm-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.farm-actions button {
+  border:0;
+  border-radius:22px;
+  padding:11px 16px;
+  background:#315d3b;
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+}
+.farm-actions button:hover {
+  background:#49784d;
+}
+@media(max-width:600px) {
+  .farm-grid {grid-template-columns:1fr;}
+}
+</style>
+
 <section id="game">
   <div class="section-head">
     <div class="eyebrow">MAKE A CHOICE</div>
@@ -158,6 +291,172 @@ footer p{margin:4px}
 </footer>
 
 <script>
+  
+/* ===== 禾小满：水稻田管理系统 ===== */
+
+let farmDay = 12;
+
+let farm = {
+  health: 78,
+  pest: 48,
+  weed: 68,
+  water: 62
+};
+
+function limitFarmValue(value) {
+  return Math.max(0, Math.min(100, value));
+}
+
+function updateFarm(message) {
+  farm.health = limitFarmValue(farm.health);
+  farm.pest = limitFarmValue(farm.pest);
+  farm.weed = limitFarmValue(farm.weed);
+  farm.water = limitFarmValue(farm.water);
+
+  document.getElementById("healthValue").textContent =
+    farm.health + "%";
+  document.getElementById("pestValue").textContent =
+    farm.pest + "%";
+  document.getElementById("weedValue").textContent =
+    farm.weed + "%";
+  document.getElementById("waterValue").textContent =
+    farm.water + "%";
+
+  document.getElementById("healthBar").style.width =
+    farm.health + "%";
+  document.getElementById("pestBar").style.width =
+    farm.pest + "%";
+  document.getElementById("weedBar").style.width =
+    farm.weed + "%";
+  document.getElementById("waterBar").style.width =
+    farm.water + "%";
+
+  document.getElementById("pestStatus").textContent =
+    farm.pest < 20 ? "✓ 虫害较轻" :
+    farm.pest < 50 ? "⚠ 虫害需要关注" : "🚨 虫害程度较高";
+
+  document.getElementById("weedStatus").textContent =
+    farm.weed < 20 ? "✓ 杂草较少" :
+    farm.weed < 50 ? "⚠ 继续观察" : "🌿 建议除草";
+
+  document.getElementById("waterStatus").textContent =
+    farm.water < 35 ? "⚠ 水分偏低" :
+    farm.water > 75 ? "⚠ 水分偏高" : "✓ 水分基本适宜";
+
+  document.getElementById("farmMessage").textContent = message;
+}
+
+function addFarmLog(message) {
+  const log = document.getElementById("farmLog");
+  const item = document.createElement("li");
+
+  item.textContent =
+    "第" + farmDay + "天：" + message;
+
+  log.prepend(item);
+
+  while (log.children.length > 8) {
+    log.removeChild(log.lastChild);
+  }
+}
+
+function inspectFarm() {
+  farm.pest = Math.max(0, farm.pest - 5);
+  farm.weed = Math.max(0, farm.weed - 3);
+
+  updateFarm(
+    "巡田完成！你检查了稻叶和田间杂草，发现问题后可以进一步处理。"
+  );
+
+  addFarmLog("完成巡田，检查虫害与杂草情况。");
+}
+
+function treatPests() {
+  if (farm.pest === 0) {
+    updateFarm("目前模拟虫害指标已经为零，继续观察就好！");
+    return;
+  }
+
+  farm.pest -= 25;
+  farm.health += 5;
+
+  updateFarm(
+    "模拟防虫操作完成！虫害指标下降，水稻健康有所改善。"
+  );
+
+  addFarmLog("完成模拟虫害处理。");
+}
+
+function removeWeeds() {
+  if (farm.weed === 0) {
+    updateFarm("杂草指标已经为零啦，记得继续巡田！");
+    return;
+  }
+
+  farm.weed -= 30;
+  farm.health += 6;
+
+  updateFarm(
+    "除草完成！杂草密度下降，禾苗有了更多生长空间。"
+  );
+
+  addFarmLog("完成模拟田间除草。");
+}
+
+function addWater() {
+  if (farm.water >= 90) {
+    updateFarm("当前模拟水分已经较高，先检查田间情况，不要盲目补水。");
+    return;
+  }
+
+  farm.water += 15;
+  farm.health += 2;
+
+  updateFarm(
+    "模拟补水完成！田间水分指标上升。是否需要补水仍应结合实际情况判断。"
+  );
+
+  addFarmLog("完成模拟补水。");
+}
+
+function drainWater() {
+  if (farm.water <= 15) {
+    updateFarm("当前模拟水分较低，不宜继续排水，请先检查田间情况。");
+    return;
+  }
+
+  farm.water -= 18;
+  farm.health += 1;
+
+  updateFarm(
+    "模拟排水完成！水分指标下降。实际操作应根据天气和田块条件决定。"
+  );
+
+  addFarmLog("完成模拟排水。");
+}
+
+function nextFarmDay() {
+  farmDay++;
+
+  farm.water -= 5;
+  farm.pest += 6;
+  farm.weed += 5;
+
+  if (farm.pest > 65 || farm.weed > 75 || farm.water < 30) {
+    farm.health -= 5;
+  } else {
+    farm.health -= 1;
+  }
+
+  updateFarm(
+    "新的一天开始了！水分会发生变化，虫害和杂草也可能增加，记得继续巡田。"
+  );
+
+  addFarmLog("进入新的一天，田间状态发生变化。");
+}
+
+updateFarm("禾小满：今天也来巡田吧！点击管理按钮，照顾好我们的稻田。");
+
 let question=0;
 function answer(n){
  const box=document.getElementById('answer');
